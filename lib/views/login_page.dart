@@ -59,11 +59,13 @@ class _LoginPageState extends State<LoginPage> {
           
                         ConstrainedBox(
                           constraints: const BoxConstraints(
-                              maxWidth: 300, minWidth: 300),
+                          maxWidth: 300, minWidth: 300),
                           child: Column(
                             children: <Widget>[
                               Field(
-                                  type: 'usuario', controller: _.emailController),
+                                  type: 'usuario',
+                                  controller: _.emailController
+                              ),
           
                               const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
                               
@@ -156,7 +158,9 @@ class _LoginPageState extends State<LoginPage> {
 
                               //--- REGISTER BUTTON ---//
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _.goToRegisterPage();
+                                },
                                 style: ButtonStyle(
                                   backgroundColor: Utils.materialAppSkyBlue,
                                   minimumSize: MaterialStateProperty.all(const Size(300,50)),
