@@ -2,7 +2,9 @@ import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_1.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_2.dart';
-import 'package:acompany_group_app/widgets/register_field_widget.dart';
+import 'package:acompany_group_app/views/register_page_steps/step_3.dart';
+import 'package:acompany_group_app/views/register_page_steps/step_4.dart';
+import 'package:acompany_group_app/views/register_page_steps/step_5.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -100,19 +102,19 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   Step(
                     title: const Text(""),
-                    content: SizedBox(height: 110.0,),
+                    content: Step3(con: _),
                     isActive: _.currentStep == 2,
                     state: _.stepState(2),
                   ),
                   Step(
-                    title: Text("STEP 4"),
-                    content: SizedBox(height: 110.0,),
+                    title: const Text(""),
+                    content: Step4(con: _),
                     isActive: _.currentStep == 3,
                     state: _.stepState(3),
                   ),
                   Step(
-                    title: Text("STEP 5"),
-                    content: SizedBox(height: 110.0,),
+                    title: const Text(""),
+                    content: Step5(con: _),
                     isActive: _.currentStep == 4,
                     state: _.stepState(4),
                   ),

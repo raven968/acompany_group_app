@@ -29,6 +29,10 @@ class _RegisterFieldWidgetState extends State<RegisterFieldWidget> {
       controller: widget.controller,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
+        labelText: widget.hint,
+        labelStyle: const TextStyle(
+          color: Utils.appNavyBlue
+        ),
         hintText: widget.hint,
         hintStyle: const TextStyle(
           color: Color.fromARGB(117, 6, 40, 61)

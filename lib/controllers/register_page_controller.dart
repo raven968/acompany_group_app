@@ -1,3 +1,4 @@
+import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/models/turn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -16,17 +17,48 @@ class RegisterPageController extends GetxController {
   DateFormat format = DateFormat('dd/M/yyyy');
 
   //CONTROLLERS
+
+  //STEP 2
   TextEditingController nameController = TextEditingController();
   TextEditingController lastNameFatherController = TextEditingController();
   TextEditingController lastNameMotherController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController birthdayController = TextEditingController();
+  
+  //STEP 3
+  TextEditingController streetController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+  TextEditingController colonyController = TextEditingController();
+  TextEditingController zipController = TextEditingController();
+
+  //STEP 5
+  TextEditingController finishYearScholarship = TextEditingController();
+
 
   //SELECTS
   String stateDropDownValue = 'Chihuahua';
   String cityDropDownValue = "Meoqui";
   List<String> statesList = <String>['Chihuahua', 'CDMX', 'Guerrero']; 
   List<String> cityList = <String>['Meoqui', 'Parral', 'Delicias']; 
+
+  String genreDrpDownValue = 'Hombre';
+  String maritalStatusDropDownValue = 'Soltero';
+  String economicDependentsDropDownValue = '1';
+
+  List<String> genreList = ['Hombre', 'Mujer', 'No especifica'];
+  List<String> maritalStatusList = ['Soltero', 'Casado', 'Union Libre'];
+  List<String> economicDependentsList = ['1','2','3','4','5'];
+
+  //SCHOLARSHIPS
+
+  final List<Scholarship> scholarshipsList = [
+    Scholarship(id: 1, scholarship: 'Primaria'),
+    Scholarship(id: 1, scholarship: 'Secundaria'),
+    Scholarship(id: 1, scholarship: 'Preparatoria/Bachillerato'),
+    Scholarship(id: 1, scholarship: 'Técnica'),
+    Scholarship(id: 1, scholarship: 'Licenciatura / Ingeniería'),
+  ];
+  
 
   //ZONES
   static final List<Zone> _zonesList = <Zone>[
