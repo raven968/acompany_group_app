@@ -11,10 +11,10 @@ class Step1 extends StatefulWidget {
   const Step1({super.key, required this.con});
 
   @override
-  State<Step1> createState() => _Step1State();
+  State<Step1> createState() => Step1State();
 }
 
-class _Step1State extends State<Step1> {
+class Step1State extends State<Step1> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,7 +90,7 @@ class _DropDownButtonState extends State<DropDownButton> {
     return DropdownButtonFormField<String>(
       value: widget.value,
       icon: const Icon(Icons.arrow_drop_down_circle),
-      iconEnabledColor: Utils.appNavyBlue,
+      iconEnabledColor: Utils.appSecondBlue,
       elevation: 16,
       isExpanded: true,
       borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -100,7 +100,8 @@ class _DropDownButtonState extends State<DropDownButton> {
         labelStyle: const TextStyle(
           fontSize: 18.0
         ),
-        prefixIcon: widget.icon
+        prefixIcon: widget.icon,
+        prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
           widget.value = value!;

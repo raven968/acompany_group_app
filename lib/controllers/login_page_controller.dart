@@ -13,6 +13,10 @@ class LoginPageController extends GetxController {
   }
 
   void goToRegisterPage() {
-    Get.offAndToNamed("/register");
+    Get.toNamed("/register");
+  }
+
+  void goToHomePage(){
+    Get.offAndToNamed('/home');
   }
 }

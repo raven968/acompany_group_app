@@ -39,7 +39,7 @@ class _RegisterFieldWidgetState extends State<RegisterFieldWidget> {
         ),
         prefixIcon: Icon(
           widget.icon,
-          color: Utils.appNavyBlue,
+          color: Utils.appSecondBlue,
         ),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(

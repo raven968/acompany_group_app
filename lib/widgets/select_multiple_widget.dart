@@ -29,7 +29,7 @@ class _SelectMultipleWidgetState extends State<SelectMultipleWidget> {
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         border: Border.all(
-          color: Utils.appNavyBlue,
+          color: Utils.appSecondBlue,
           width: 1,
         ),
       ),
@@ -40,7 +40,8 @@ class _SelectMultipleWidgetState extends State<SelectMultipleWidget> {
             listType: MultiSelectListType.CHIP,
             buttonText: Text(widget.buttonText),
             buttonIcon: const Icon(
-              Icons.arrow_drop_down_circle_rounded
+              Icons.arrow_drop_down_circle_rounded,
+              color: Utils.appSecondBlue,
             ),
             cancelText: const Text("Atrás"),
             title: Text(
@@ -63,7 +64,7 @@ class _SelectMultipleWidgetState extends State<SelectMultipleWidget> {
                   widget.selectedItems.remove(value);
                 });
               },
-              chipColor: Utils.appNavyBlue,
+              chipColor: Utils.appSecondBlue,
               textStyle: const TextStyle(
                 color: Colors.white
               ),

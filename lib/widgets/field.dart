@@ -24,7 +24,7 @@ class _FieldState extends State<Field> {
         ),
         prefixIcon: Icon(
           widget.type == 'usuario' ? Icons.person : Icons.lock,
-          color: Utils.appNavyBlue,
+          color: Utils.appSecondBlue,
         ),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(

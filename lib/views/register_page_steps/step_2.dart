@@ -65,7 +65,7 @@ class _Step2State extends State<Step2> {
               ),
               prefixIcon: Icon(
                 Icons.calendar_month,
-                color: Utils.appNavyBlue,
+                color: Utils.appSecondBlue,
               ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(

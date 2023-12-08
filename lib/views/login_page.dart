@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   prefixIcon: const Icon(
                                     Icons.lock,
-                                    color: Utils.appNavyBlue,
+                                    color: Utils.appSecondBlue,
                                   ),
                                   enabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                                   suffixIcon: GestureDetector(
                                     child: Icon(
                                       !_.show ? Icons.visibility : Icons.visibility_off,
-                                      color: Utils.appNavyBlue,
+                                      color: Utils.appSecondBlue,
                                     ),
                                     onTap: () {_.changeShowPassword();},
                                   ), 
@@ -132,9 +132,11 @@ class _LoginPageState extends State<LoginPage> {
 
                               //--- LOGIN BUTTON ---//
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _.goToHomePage();
+                                },
                                 style: ButtonStyle(
-                                  backgroundColor: Utils.materialAppNavyBlue,
+                                  backgroundColor: Utils.materialAppSecondBlue,
                                   minimumSize: MaterialStateProperty.all(const Size(300,50)),
                                 ),
                                 child: const Text(
@@ -164,12 +166,12 @@ class _LoginPageState extends State<LoginPage> {
                                 style: ButtonStyle(
                                   backgroundColor: Utils.materialAppSkyBlue,
                                   minimumSize: MaterialStateProperty.all(const Size(300,50)),
-                                  side: MaterialStateProperty.all(const BorderSide(color: Utils.appNavyBlue))
+                                  side: MaterialStateProperty.all(const BorderSide(color: Utils.appSecondBlue))
                                 ),
                                 child: const Text(
                                   'Regístrate',
                                   style: TextStyle(
-                                    color: Utils.appNavyBlue
+                                    color: Utils.appSecondBlue
                                   ),
                                 ),
                                 
@@ -200,7 +202,7 @@ class CurvePainter extends CustomPainter {
   @override
  void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = Utils.appNavyBlue;
+    paint.color = Utils.appSecondBlue;
     paint.style = PaintingStyle.fill;
 
     var path = Path();

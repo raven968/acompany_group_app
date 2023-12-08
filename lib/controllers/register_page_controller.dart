@@ -12,6 +12,10 @@ class RegisterPageController extends GetxController {
 
   int currentStep = 0;
 
+  int numberOfSteps = 8;
+
+  List optionalSteps = [];
+
   //BIRTHDAY
   DateTime? selectedDate;
   DateFormat format = DateFormat('dd/M/yyyy');
@@ -48,6 +52,11 @@ class RegisterPageController extends GetxController {
   List<String> genreList = ['Hombre', 'Mujer', 'No especifica'];
   List<String> maritalStatusList = ['Soltero', 'Casado', 'Union Libre'];
   List<String> economicDependentsList = ['1','2','3','4','5'];
+
+  List<String> firstWorkList = ['SI', 'NO'];
+  String firstWorkValue = 'SI';
+  List<String> fiscalSituationList = ['SI', 'NO', 'NO SE'];
+  String fiscalSituationValue = 'SI';
 
   //SCHOLARSHIPS
 
@@ -89,8 +98,36 @@ class RegisterPageController extends GetxController {
   //###############################//
   //--------- FUNCTIONS -----------//
   //###############################//
+
+  @override
+  void onInit() {
+    // TODO: implement onReady
+    super.onInit();
+    // OPTIONAL STEPS
+    optionalSteps = [
+      Step(
+        title: Text(""),
+        content: SizedBox(height: 110.0,),
+        isActive: currentStep == 6,
+        state: stepState(6),
+      ),
+      Step(
+        title: Text(""),
+        content: SizedBox(height: 110.0,),
+        isActive: currentStep == 7,
+        state: stepState(7),
+      ),
+      Step(
+        title: Text(""),
+        content: SizedBox(height: 110.0,),
+        isActive: currentStep == 8,
+        state: stepState(8),
+      )
+    ];
+  }
+
   void nextStep() {
-    if(currentStep >= 8) {
+    if(currentStep >= numberOfSteps) {
       return;
     } 
     currentStep++;
@@ -130,6 +167,16 @@ class RegisterPageController extends GetxController {
       birthdayController.text = format.format(picked);
       update();
     }
+  }
+
+  changeNumberOfSteps(value) {
+    if(value == 'NO'){
+      numberOfSteps = 8;
+    }else{
+      numberOfSteps = 5;
+    }
+    firstWorkValue = value;
+    update();
   }
 
 }

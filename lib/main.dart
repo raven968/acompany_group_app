@@ -1,3 +1,4 @@
+import 'package:acompany_group_app/views/home_page.dart';
 import 'package:acompany_group_app/views/login_page.dart';
 import 'package:acompany_group_app/views/register_page.dart';
 import 'package:flutter/material.dart';
@@ -52,5 +53,11 @@ class AppRoutes {
       page: () => const RegisterPage(),
       transition: Transition.circularReveal
     ),
+
+    GetPage(
+      name: "/home",
+      page: () => const HomePage(),
+      transition: Transition.circularReveal
+    )
   ];
 }

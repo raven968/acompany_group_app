@@ -2,18 +2,17 @@ import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:flutter/material.dart';
 
-class Step4 extends StatefulWidget {
+class Step6 extends StatefulWidget {
 
-  //VARIABLES
   final RegisterPageController con;
 
-  const Step4({super.key, required this.con});
+  const Step6({super.key, required this.con});
 
   @override
-  State<Step4> createState() => _Step4State();
+  State<Step6> createState() => _Step6State();
 }
 
-class _Step4State extends State<Step4> {
+class _Step6State extends State<Step6> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,34 +21,31 @@ class _Step4State extends State<Step4> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
 
-          //STATE
+          //FIRST WORK
           DropDownButton(
-            value: widget.con.genreDrpDownValue,
-            list: widget.con.genreList,
-            labelText: "Genero:",
-            icon: const Icon(Icons.man),
+            value: widget.con.firstWorkValue,
+            list: widget.con.firstWorkList,
+            labelText: "¿Es tu Primer Trabajo?",
+            icon: const Icon(Icons.work),
+            con: widget.con,
           ),
-          //CITY
+          const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+
+          //FISCAL SITUATION
           DropDownButton(
-            value: widget.con.maritalStatusDropDownValue,
-            list: widget.con.maritalStatusList,
-            labelText: "Estado Civil:",
-            icon: const Icon(Icons.woman_2),
+            value: widget.con.fiscalSituationValue,
+            list: widget.con.fiscalSituationList,
+            labelText: "Constancia de Situación Fiscal:",
+            icon: const Icon(Icons.description),
           ),
-          //CITY
-          DropDownButton(
-            value: widget.con.economicDependentsDropDownValue,
-            list: widget.con.economicDependentsList,
-            labelText: "Dependientes Económicos:",
-            icon: const Icon(Icons.group),
-          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+          
 
         ],
       ),
     );
   }
 }
-
 
 class DropDownButton extends StatefulWidget {
 
@@ -59,12 +55,15 @@ class DropDownButton extends StatefulWidget {
   final Icon icon;
   final String labelText;
 
+  final RegisterPageController? con;
+
   DropDownButton({
     super.key,
     required this.value,
     required this.list,
     required this.icon,
-    required this.labelText
+    required this.labelText,
+    this.con
   });
 
   @override
@@ -91,7 +90,7 @@ class _DropDownButtonState extends State<DropDownButton> {
         prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
-          widget.value = value!;
+          widget.con?.changeNumberOfSteps(value);
       },
       items: widget.list.map<DropdownMenuItem<String>>((value) {
         return DropdownMenuItem<String>(

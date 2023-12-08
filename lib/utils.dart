@@ -8,4 +8,5 @@ class Utils {
 
   static MaterialStateProperty<Color> materialAppSkyBlue = MaterialStateProperty.all(appSkyBlue);
   static MaterialStateProperty<Color> materialAppNavyBlue = MaterialStateProperty.all(appNavyBlue);
+  static MaterialStateProperty<Color> materialAppSecondBlue = MaterialStateProperty.all(appSecondBlue);
 }
