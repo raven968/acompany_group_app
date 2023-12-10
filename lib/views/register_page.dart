@@ -20,7 +20,9 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  final GlobalKey<Step1State> step1Key = GlobalKey<Step1State>();
+  static GlobalKey<Step1State> step1Key = GlobalKey<Step1State>();
+  static GlobalKey<Step1State> step4Key = GlobalKey<Step1State>();
+  static GlobalKey<Step1State> step5Key = GlobalKey<Step1State>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +58,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Container(
                   color: Utils.appSkyBlue,
+                  key: Key("mysuperkey-" +  _.numberOfSteps.toString()),
                   child: Stepper(
                     currentStep: _.currentStep,
-                    key: Key(Random.secure().nextDouble().toString()),
                     onStepContinue: () {
                       setState(() {
                         _.nextStep();
@@ -138,13 +140,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       Step(
                         title: const Text(""),
-                        content: Step4(con: _),
+                        content: Step4(con: _, key: step4Key,),
                         isActive: _.currentStep == 3,
                         state: _.stepState(3),
                       ),
                       Step(
                         title: const Text(""),
-                        content: Step5(con: _),
+                        content: Step5(con: _, key: step5Key,),
                         isActive: _.currentStep == 4,
                         state: _.stepState(4),
                       ),

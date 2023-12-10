@@ -79,7 +79,7 @@ class _Step2State extends State<Step2> {
             enableSuggestions: true,
             keyboardType: TextInputType.none,
             onTap: () {
-              widget.con.selectDate(context);
+              widget.con.selectDate(context, widget.con.birthdayController);
             } 
           )
 

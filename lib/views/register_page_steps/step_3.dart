@@ -58,7 +58,7 @@ class _Step3State extends State<Step3> {
           //ZIP
           RegisterFieldWidget(
             controller: widget.con.zipController,
-            hint: "Colonia", 
+            hint: "Código Postal", 
             icon: Icons.local_post_office,
             keyboardType: TextInputType.text,
           ),

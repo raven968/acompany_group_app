@@ -1,5 +1,6 @@
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/models/turn.dart';
+import 'package:acompany_group_app/views/register_page_steps/step_7.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
@@ -38,6 +39,13 @@ class RegisterPageController extends GetxController {
   //STEP 5
   TextEditingController finishYearScholarship = TextEditingController();
 
+  //STEP 7
+  TextEditingController  positionController = TextEditingController();
+  TextEditingController  companyController = TextEditingController();
+  TextEditingController  initDateController = TextEditingController();
+  TextEditingController  finishDateController = TextEditingController();
+  
+
 
   //SELECTS
   String stateDropDownValue = 'Chihuahua';
@@ -54,9 +62,13 @@ class RegisterPageController extends GetxController {
   List<String> economicDependentsList = ['1','2','3','4','5'];
 
   List<String> firstWorkList = ['SI', 'NO'];
-  String firstWorkValue = 'SI';
+  String firstWorkValue = 'NO';
   List<String> fiscalSituationList = ['SI', 'NO', 'NO SE'];
   String fiscalSituationValue = 'SI';
+
+  //STEP 7
+  List<String> specialtyList = ['Producción', 'Calidad', 'Almacén'];
+  String specialtyValue = 'Producción';
 
   //SCHOLARSHIPS
 
@@ -107,7 +119,7 @@ class RegisterPageController extends GetxController {
     optionalSteps = [
       Step(
         title: Text(""),
-        content: SizedBox(height: 110.0,),
+        content: Step7(con: this),
         isActive: currentStep == 6,
         state: stepState(6),
       ),
@@ -154,7 +166,7 @@ class RegisterPageController extends GetxController {
     currentStep = step;
   }
 
-  Future<void> selectDate(BuildContext context) async {
+  Future<void> selectDate(BuildContext context, TextEditingController con) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -164,7 +176,7 @@ class RegisterPageController extends GetxController {
     );
 
     if (picked != null && picked != selectedDate) {
-      birthdayController.text = format.format(picked);
+      con.text = format.format(picked);
       update();
     }
   }
