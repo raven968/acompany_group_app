@@ -25,6 +25,20 @@ class _Step7State extends State<Step7> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
 
+          ////////////////////////
+          /// FIRST EXPERIENCE ///
+          ///////////////////////
+          const Text(
+            "Experiencia Laboral (Mas reciente)",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Utils.appNavyBlue,
+              fontSize: 17.0
+            ),
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+
           //POSITION
           RegisterFieldWidget(
             controller: widget.con.positionController,
@@ -33,6 +47,8 @@ class _Step7State extends State<Step7> {
             keyboardType: TextInputType.text
           ),
 
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
           //COMPANY
           RegisterFieldWidget(
             controller: widget.con.companyController,
@@ -40,6 +56,8 @@ class _Step7State extends State<Step7> {
             icon: Icons.apartment,
             keyboardType: TextInputType.text
           ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
 
           //INIT DATE
           TextFormField(
@@ -69,6 +87,8 @@ class _Step7State extends State<Step7> {
               widget.con.selectDate(context, widget.con.initDateController);
             } 
           ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
           
           //FINISH DATE
           TextFormField(
@@ -99,12 +119,226 @@ class _Step7State extends State<Step7> {
             } 
           ),
 
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
           DropDownButton(
             value: widget.con.specialtyValue,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
             labelText: "Especialidad"
-          )
+          ),
+
+          /////////////////////////
+          /// SECOND EXPERIENCE ///
+          /////////////////////////
+          
+          const Padding(padding: EdgeInsets.symmetric(vertical: 30.0)),
+
+          const Text(
+            "Experiencia Laboral",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Utils.appNavyBlue,
+              fontSize: 17.0
+            ),
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+
+          //POSITION
+          RegisterFieldWidget(
+            controller: widget.con.positionController2,
+            hint: "Puesto",
+            icon: Icons.manage_accounts_rounded,
+            keyboardType: TextInputType.text
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          //COMPANY
+          RegisterFieldWidget(
+            controller: widget.con.companyController2,
+            hint: "Empresa",
+            icon: Icons.apartment,
+            keyboardType: TextInputType.text
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          //INIT DATE
+          TextFormField(
+            controller: widget.con.initDateController2,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: const InputDecoration(
+              hintText: 'Fecha de Inicio',
+              hintStyle: TextStyle(
+                color: Color.fromARGB(117, 6, 40, 61)
+              ),
+              prefixIcon: Icon(
+                Icons.calendar_month,
+                color: Utils.appSecondBlue,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Utils.appNavyBlue
+                )
+              ),
+              focusedBorder: UnderlineInputBorder(),
+              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
+            ),
+            autocorrect: true,
+            enableSuggestions: true,
+            keyboardType: TextInputType.none,
+            onTap: () {
+              widget.con.selectDate(context, widget.con.initDateController2);
+            } 
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+          
+          //FINISH DATE
+          TextFormField(
+            controller: widget.con.finishDateController2,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: const InputDecoration(
+              hintText: 'Fecha de Fin',
+              hintStyle: TextStyle(
+                color: Color.fromARGB(117, 6, 40, 61)
+              ),
+              prefixIcon: Icon(
+                Icons.calendar_month,
+                color: Utils.appSecondBlue,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Utils.appNavyBlue
+                )
+              ),
+              focusedBorder: UnderlineInputBorder(),
+              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
+            ),
+            autocorrect: true,
+            enableSuggestions: true,
+            keyboardType: TextInputType.none,
+            onTap: () {
+              widget.con.selectDate(context, widget.con.finishDateController2);
+            } 
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          DropDownButton(
+            value: widget.con.specialtyValue2,
+            list: widget.con.specialtyList,
+            icon: const Icon(Icons.work),
+            labelText: "Especialidad"
+          ),
+
+          ////////////////////////
+          /// THIRD EXPERIENCE ///
+          ////////////////////////
+          
+          const Padding(padding: EdgeInsets.symmetric(vertical: 30.0)),
+
+          const Text(
+            "Experiencia Laboral",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Utils.appNavyBlue,
+              fontSize: 17.0
+            ),
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+
+          //POSITION
+          RegisterFieldWidget(
+            controller: widget.con.positionController3,
+            hint: "Puesto",
+            icon: Icons.manage_accounts_rounded,
+            keyboardType: TextInputType.text
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          //COMPANY
+          RegisterFieldWidget(
+            controller: widget.con.companyController3,
+            hint: "Empresa",
+            icon: Icons.apartment,
+            keyboardType: TextInputType.text
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          //INIT DATE
+          TextFormField(
+            controller: widget.con.initDateController3,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: const InputDecoration(
+              hintText: 'Fecha de Inicio',
+              hintStyle: TextStyle(
+                color: Color.fromARGB(117, 6, 40, 61)
+              ),
+              prefixIcon: Icon(
+                Icons.calendar_month,
+                color: Utils.appSecondBlue,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Utils.appNavyBlue
+                )
+              ),
+              focusedBorder: UnderlineInputBorder(),
+              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
+            ),
+            autocorrect: true,
+            enableSuggestions: true,
+            keyboardType: TextInputType.none,
+            onTap: () {
+              widget.con.selectDate(context, widget.con.initDateController3);
+            } 
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+          
+          //FINISH DATE
+          TextFormField(
+            controller: widget.con.finishDateController3,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: const InputDecoration(
+              hintText: 'Fecha de Fin',
+              hintStyle: TextStyle(
+                color: Color.fromARGB(117, 6, 40, 61)
+              ),
+              prefixIcon: Icon(
+                Icons.calendar_month,
+                color: Utils.appSecondBlue,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Utils.appNavyBlue
+                )
+              ),
+              focusedBorder: UnderlineInputBorder(),
+              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
+            ),
+            autocorrect: true,
+            enableSuggestions: true,
+            keyboardType: TextInputType.none,
+            onTap: () {
+              widget.con.selectDate(context, widget.con.finishDateController3);
+            } 
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          DropDownButton(
+            value: widget.con.specialtyValue3,
+            list: widget.con.specialtyList,
+            icon: const Icon(Icons.work),
+            labelText: "Especialidad"
+          ),
 
         ]
       ),

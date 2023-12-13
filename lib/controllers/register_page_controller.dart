@@ -1,6 +1,8 @@
+import 'package:acompany_group_app/models/area.dart';
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/models/turn.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_7.dart';
+import 'package:acompany_group_app/views/register_page_steps/step_8.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +15,8 @@ class RegisterPageController extends GetxController {
 
   int currentStep = 0;
 
-  int numberOfSteps = 8;
+  int numberOfSteps = 7;
+  int lastStep = 7;
 
   List optionalSteps = [];
 
@@ -44,6 +47,16 @@ class RegisterPageController extends GetxController {
   TextEditingController  companyController = TextEditingController();
   TextEditingController  initDateController = TextEditingController();
   TextEditingController  finishDateController = TextEditingController();
+  //STEP 7 SECOND
+  TextEditingController  positionController2 = TextEditingController();
+  TextEditingController  companyController2 = TextEditingController();
+  TextEditingController  initDateController2 = TextEditingController();
+  TextEditingController  finishDateController2 = TextEditingController();
+  //STEP 7 THIRD
+  TextEditingController  positionController3 = TextEditingController();
+  TextEditingController  companyController3 = TextEditingController();
+  TextEditingController  initDateController3 = TextEditingController();
+  TextEditingController  finishDateController3 = TextEditingController();
   
 
 
@@ -69,6 +82,26 @@ class RegisterPageController extends GetxController {
   //STEP 7
   List<String> specialtyList = ['Producción', 'Calidad', 'Almacén'];
   String specialtyValue = 'Producción';
+  //STEP 7 SECOND EXPERIENCE
+  String specialtyValue2 = 'Producción';
+  //STEP 7 THIRD EXPERIENCE
+  String specialtyValue3 = 'Producción';
+
+  //STEP 8 AREAS LIST
+  TextEditingController haveSpecialtyController = TextEditingController();
+
+  static final List<Area> _areasList = [
+    Area(id: 1, area: "Producción"),
+    Area(id: 2, area: "Almacén"),
+    Area(id: 3, area: "Calidad"),
+    Area(id: 4, area: "Materialista"),
+  ];
+
+  final areaItems = _areasList
+                    .map((area) => MultiSelectItem<Area>(area, area.area))
+                    .toList();
+
+  List selectedAreas = [];
 
   //SCHOLARSHIPS
 
@@ -125,15 +158,9 @@ class RegisterPageController extends GetxController {
       ),
       Step(
         title: Text(""),
-        content: SizedBox(height: 110.0,),
+        content: Step8(con: this,),
         isActive: currentStep == 7,
         state: stepState(7),
-      ),
-      Step(
-        title: Text(""),
-        content: SizedBox(height: 110.0,),
-        isActive: currentStep == 8,
-        state: stepState(8),
       )
     ];
   }
@@ -183,9 +210,11 @@ class RegisterPageController extends GetxController {
 
   changeNumberOfSteps(value) {
     if(value == 'NO'){
-      numberOfSteps = 8;
+      numberOfSteps = 7;
+      lastStep = 7;
     }else{
       numberOfSteps = 5;
+      lastStep = 5;
     }
     firstWorkValue = value;
     update();

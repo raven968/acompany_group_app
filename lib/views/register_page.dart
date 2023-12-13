@@ -89,9 +89,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 side: MaterialStateProperty.all(const BorderSide(color: Utils.appSecondBlue)),
                                 backgroundColor: MaterialStateProperty.all(Utils.appSkyBlue)
                               ),
-                              child: const Text(
-                                'Sig.',
-                                style: TextStyle(
+                              child: Text(
+                                _.lastStep == _.currentStep ? 'Registrarme!' : 'Sig.',
+                                style: const TextStyle(
                                   color: Utils.appSecondBlue
                                 ),
                               ),
