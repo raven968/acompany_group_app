@@ -1,29 +1,28 @@
-import 'package:acompany_group_app/controllers/home_page_controller.dart';
+import 'package:acompany_group_app/controllers/my_account_page_controller.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:acompany_group_app/widgets/side_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MyAccountPage extends StatefulWidget {
+  const MyAccountPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MyAccountPage> createState() => _MyAccountPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MyAccountPageState extends State<MyAccountPage> {
   @override
   Widget build(BuildContext context) {
 
     //SiZES OF THE DEVICE
     double height = MediaQuery.of(context).size.height;
-    //double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
 
-    return GetBuilder<HomePageController>(
-      init: HomePageController(),
+    return GetBuilder<MyAccountPageController>(
+      init: MyAccountPageController(),
       builder: (_) => Scaffold(
-        key: _.scaffoldKey,
+        key: _.scaffoldKey1,
         drawer: Container(
             padding: EdgeInsets.only(top: height * .12, bottom: height * .12),
             child: const SideMenu()),
@@ -65,26 +64,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Utils.appSkyBlue,
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          
-              Image.asset(
-                'assets/img/acompany1.png',
-                width: 150.0,
+
+              const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+
+              GestureDetector(
+                onTap: () { _.showAlertDialog(); },
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(_.imagePath),
+                  backgroundColor: Colors.white,
+                  radius: (width * .20),
+                ),
               ),
-          
-              Text(
-                "Pronto Podrás Buscar el empleo de tus sueños",
-                style: GoogleFonts.josefinSans(
-                  textStyle: const TextStyle(
-                    fontSize: 20.0,
-                    color: Utils.appNavyBlue
-                  ),
-                ),  
-                textAlign: TextAlign.center,
-              ),
-          
-          
+
+
             ],
           ),
         ),

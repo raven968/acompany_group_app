@@ -42,7 +42,7 @@ class _SideMenuState extends State<SideMenu> {
                 color: Utils.appSecondBlue,
               ),
               onTap: () {
-                _.goToHomePage();
+                _.goToMyAccountPage();
               },
             ),
 

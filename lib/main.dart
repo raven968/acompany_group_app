@@ -1,5 +1,6 @@
 import 'package:acompany_group_app/views/home_page.dart';
 import 'package:acompany_group_app/views/login_page.dart';
+import 'package:acompany_group_app/views/my_account_page.dart';
 import 'package:acompany_group_app/views/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -57,6 +58,12 @@ class AppRoutes {
     GetPage(
       name: "/home",
       page: () => const HomePage(),
+      transition: Transition.circularReveal
+    ),
+
+    GetPage(
+      name: "/my_account",
+      page: () => const MyAccountPage(),
       transition: Transition.circularReveal
     )
   ];

@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class SideMenuController extends GetxController {
 
   void goToHomePage() {
-    Get.toNamed("/home");
+    Get.deleteAll();
+    Get.offAndToNamed("/home");
   }
 
-  void goToProfilePage() {
-    Get.toNamed('/profile');
+  void goToMyAccountPage() {
+    Get.deleteAll();
+    Get.offAndToNamed('/my_account');
   }
 
   void logout() {
