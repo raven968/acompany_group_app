@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:acompany_group_app/models/area.dart';
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/models/turn.dart';
+import 'package:acompany_group_app/utils.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_7.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_8.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +18,8 @@ class RegisterPageController extends GetxController {
 
   int currentStep = 0;
 
-  int numberOfSteps = 7;
-  int lastStep = 7;
+  int numberOfSteps = 5;
+  int lastStep = 5;
 
   List optionalSteps = [];
 
@@ -90,53 +93,26 @@ class RegisterPageController extends GetxController {
   //STEP 8 AREAS LIST
   TextEditingController haveSpecialtyController = TextEditingController();
 
-  static final List<Area> _areasList = [
-    Area(id: 1, area: "Producción"),
-    Area(id: 2, area: "Almacén"),
-    Area(id: 3, area: "Calidad"),
-    Area(id: 4, area: "Materialista"),
-  ];
+  List<Area> areasList = [];
 
-  final areaItems = _areasList
-                    .map((area) => MultiSelectItem<Area>(area, area.area))
-                    .toList();
+  List<MultiSelectItem<Area>> areaItems = [];
 
   List selectedAreas = [];
 
   //SCHOLARSHIPS
 
-  final List<Scholarship> scholarshipsList = [
-    Scholarship(id: 1, scholarship: 'Primaria'),
-    Scholarship(id: 1, scholarship: 'Secundaria'),
-    Scholarship(id: 1, scholarship: 'Preparatoria/Bachillerato'),
-    Scholarship(id: 1, scholarship: 'Técnica'),
-    Scholarship(id: 1, scholarship: 'Licenciatura / Ingeniería'),
-  ];
+  List<Scholarship> scholarshipsList = [];
+  Scholarship scholarshipValue = Scholarship();
   
 
   //ZONES
-  static final List<Zone> _zonesList = <Zone>[
-    Zone(id: 1, zone:"Norte"),
-    Zone(id: 2, zone:"Centro"),
-    Zone(id: 3, zone:"Sur"),
-  ];
-  final zoneItems = _zonesList
-      .map((zone) => MultiSelectItem<Zone>(zone, zone.zone))
-      .toList();
+  List<Zone> _zonesList = [];
+  List<MultiSelectItem<Zone>> zoneItems = [];
   List selectedZones = [];
 
   //TURNS
-  static final List<Turn> _turnsList = <Turn> [
-    Turn(id: 1, turn: "Horarios Fijos"),
-    Turn(id: 2, turn: "Turno Matutino"),
-    Turn(id: 3, turn: "Turno Vespertino"),
-    Turn(id: 4, turn: "Turno Nocturno"),
-    Turn(id: 5, turn: "3x2"),
-    Turn(id: 6, turn: "Turnos Rotativos"),
-    Turn(id: 7, turn: "Fin de Semana"),
-  ];
-  final turnItems = _turnsList
-        .map((turn) => MultiSelectItem<Turn>(turn, turn.turn)).toList();
+  List<Turn> _turnsList = [];
+  List<MultiSelectItem<Turn>> turnItems = [];
   List selectedTurns = [];
 
 
@@ -146,8 +122,19 @@ class RegisterPageController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onReady
     super.onInit();
+    getAreas();
+    getStates();
+    getCities();
+    getZones();
+    getTurns();
+    getScholarchips();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
     // OPTIONAL STEPS
     optionalSteps = [
       Step(
@@ -163,6 +150,9 @@ class RegisterPageController extends GetxController {
         state: stepState(7),
       )
     ];
+
+    numberOfSteps = 7;
+    lastStep = 7;
   }
 
   void nextStep() {
@@ -218,6 +208,72 @@ class RegisterPageController extends GetxController {
     }
     firstWorkValue = value;
     update();
+  }
+
+  void getAreas() async {
+    areasList = await Utils.getAreas();
+
+    areaItems = areasList
+                    .map((area) => MultiSelectItem<Area>(area, area.area))
+                    .toList();               
+  }
+
+  void getZones() async {
+    _zonesList = await Utils.getZones();
+
+    zoneItems = _zonesList
+      .map((zone) => MultiSelectItem<Zone>(zone, zone.zone))
+      .toList();
+
+  }
+
+  void getTurns() async {
+
+    _turnsList = await Utils.getTurns();
+
+    turnItems = _turnsList
+        .map((turn) => MultiSelectItem<Turn>(turn, turn.turn)).toList();
+
+  }
+
+  void getScholarchips() async {
+    scholarshipsList = await Utils.getEducationLevels();
+    scholarshipValue = scholarshipsList.first;
+    inspect(scholarshipsList);
+  }
+
+  void getStates() async {
+    statesList =  await Utils.getStates();
+    update();
+  }
+
+  void getCities() async {
+    
+    cityList = await Utils.getCities(stateDropDownValue);
+    cityDropDownValue = cityList.first;
+    update();
+  }
+
+  List getListOfState() {
+    return statesList;
+  }
+
+  List getListOfCities() {
+    return cityList;
+  }
+
+  void changeStateValue(value) {
+    
+    stateDropDownValue = value;
+    getCities();
+  }
+
+  void changeCityValue(value) {
+    cityDropDownValue = value;
+  }
+
+  void register() {
+    print('hello');
   }
 
 }

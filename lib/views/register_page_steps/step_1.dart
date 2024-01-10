@@ -26,16 +26,20 @@ class Step1State extends State<Step1> {
           //STATE
           DropDownButton(
             value: widget.con.stateDropDownValue,
-            list: widget.con.statesList,
+            list: widget.con.getListOfState(),
             labelText: "Estado:",
             icon: const Icon(Icons.location_pin),
+            con: widget.con,
+            type: 'state',
           ),
           //CITY
           DropDownButton(
             value: widget.con.cityDropDownValue,
-            list: widget.con.cityList,
+            list: widget.con.getListOfCities(),
             labelText: "Ciudad:",
             icon: const Icon(Icons.location_city),
+            con: widget.con,
+            type: 'city',
           ),
 
           //---- ZONES ----//
@@ -71,13 +75,17 @@ class DropDownButton extends StatefulWidget {
   final List list;
   final Icon icon;
   final String labelText;
+  RegisterPageController con;
+  final String type;
 
   DropDownButton({
     super.key,
     required this.value,
     required this.list,
     required this.icon,
-    required this.labelText
+    required this.labelText,
+    required this.con,
+    required this.type
   });
 
   @override
@@ -104,7 +112,7 @@ class _DropDownButtonState extends State<DropDownButton> {
         prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
-          widget.value = value!;
+          widget.type == 'state' ? widget.con.changeStateValue(value) : widget.con.changeCityValue(value); 
       },
       items: widget.list.map<DropdownMenuItem<String>>((value) {
         return DropdownMenuItem<String>(

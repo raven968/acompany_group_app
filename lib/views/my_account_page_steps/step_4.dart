@@ -1,21 +1,20 @@
+import 'package:acompany_group_app/controllers/my_account_page_controller.dart';
 import 'package:acompany_group_app/controllers/register_page_controller.dart';
-import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/utils.dart';
-import 'package:acompany_group_app/widgets/register_field_widget.dart';
 import 'package:flutter/material.dart';
 
-class Step5 extends StatefulWidget {
+class Step4 extends StatefulWidget {
 
   //VARIABLES
-  final RegisterPageController con;
+  final MyAccountPageController con;
 
-  const Step5({super.key, required this.con});
+  const Step4({super.key, required this.con});
 
   @override
-  State<Step5> createState() => _Step5State();
+  State<Step4> createState() => _Step4State();
 }
 
-class _Step5State extends State<Step5> {
+class _Step4State extends State<Step4> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,20 +23,26 @@ class _Step5State extends State<Step5> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
 
-          //SCHOLARSHIP
+          //STATE
           DropDownButton(
-            value: widget.con.scholarshipValue,
-            list: widget.con.scholarshipsList,
-            labelText: "Escolaridad:",
-            icon: const Icon(Icons.school),
+            value: widget.con.genreDrpDownValue,
+            list: widget.con.genreList,
+            labelText: "Genero:",
+            icon: const Icon(Icons.man),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-          //Experience
-          RegisterFieldWidget(
-            controller: widget.con.finishYearScholarship,
-            hint: "Año de Terminado",
-            icon: Icons.calendar_month,
-            keyboardType: TextInputType.number
+          //CITY
+          DropDownButton(
+            value: widget.con.maritalStatusDropDownValue,
+            list: widget.con.maritalStatusList,
+            labelText: "Estado Civil:",
+            icon: const Icon(Icons.woman_2),
+          ),
+          //CITY
+          DropDownButton(
+            value: widget.con.economicDependentsDropDownValue,
+            list: widget.con.economicDependentsList,
+            labelText: "Dependientes Económicos:",
+            icon: const Icon(Icons.group),
           ),
 
         ],
@@ -46,10 +51,11 @@ class _Step5State extends State<Step5> {
   }
 }
 
+
 class DropDownButton extends StatefulWidget {
 
   //Variables
-  Scholarship value;
+  String value;
   final List list;
   final Icon icon;
   final String labelText;
@@ -69,7 +75,7 @@ class DropDownButton extends StatefulWidget {
 class _DropDownButtonState extends State<DropDownButton> {
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<Scholarship>(
+    return DropdownButtonFormField<String>(
       value: widget.value,
       icon: const Icon(Icons.arrow_drop_down_circle),
       iconEnabledColor: Utils.appSecondBlue,
@@ -88,11 +94,11 @@ class _DropDownButtonState extends State<DropDownButton> {
       onChanged: (value) {
           widget.value = value!;
       },
-      items: widget.list.map<DropdownMenuItem<Scholarship>>((value) {
-        return DropdownMenuItem<Scholarship>(
+      items: widget.list.map<DropdownMenuItem<String>>((value) {
+        return DropdownMenuItem<String>(
           value: value,
           child: Text(
-            value.scholarship,
+            value,
             style: const TextStyle(
               fontSize: 16.0
             ),

@@ -84,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Row(
                           children: <Widget>[
                             ElevatedButton(
-                              onPressed: details.onStepContinue,
+                              onPressed: _.lastStep == _.currentStep ? _.register : details.onStepContinue,
                               style: ButtonStyle(
                                 side: MaterialStateProperty.all(const BorderSide(color: Utils.appSecondBlue)),
                                 backgroundColor: MaterialStateProperty.all(Utils.appSkyBlue)

@@ -1,3 +1,4 @@
+import 'package:acompany_group_app/controllers/my_account_page_controller.dart';
 import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/utils.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 class Step5 extends StatefulWidget {
 
   //VARIABLES
-  final RegisterPageController con;
+  final MyAccountPageController con;
 
   const Step5({super.key, required this.con});
 
@@ -26,7 +27,7 @@ class _Step5State extends State<Step5> {
 
           //SCHOLARSHIP
           DropDownButton(
-            value: widget.con.scholarshipValue,
+            value: widget.con.scholarshipsList.first,
             list: widget.con.scholarshipsList,
             labelText: "Escolaridad:",
             icon: const Icon(Icons.school),

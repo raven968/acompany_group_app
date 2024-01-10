@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class Scholarship {
-    int id;
-    String scholarship;
+    int? id;
+    String? scholarship;
 
     Scholarship({
-        required this.id,
-        required this.scholarship,
+        this.id,
+        this.scholarship,
     });
 
     factory Scholarship.fromRawJson(String str) => Scholarship.fromJson(json.decode(str));
