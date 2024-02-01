@@ -1,12 +1,15 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:acompany_group_app/models/area.dart';
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/models/turn.dart';
+import 'package:acompany_group_app/models/user.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_7.dart';
 import 'package:acompany_group_app/views/register_page_steps/step_8.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
@@ -18,6 +21,8 @@ class RegisterPageController extends GetxController {
 
   int currentStep = 0;
 
+  bool isLoading = false;
+
   int numberOfSteps = 5;
   int lastStep = 5;
 
@@ -25,7 +30,7 @@ class RegisterPageController extends GetxController {
 
   //BIRTHDAY
   DateTime? selectedDate;
-  DateFormat format = DateFormat('dd/M/yyyy');
+  DateFormat format = DateFormat('yyyy/MM/dd');
 
   //CONTROLLERS
 
@@ -272,8 +277,144 @@ class RegisterPageController extends GetxController {
     cityDropDownValue = value;
   }
 
-  void register() {
-    print('hello');
+  void changeSelectedZones(values) {
+    selectedZones = values;
+    //update();
+    inspect(selectedZones);
+  }
+
+  void changeSelectedTurns(values) {
+    selectedTurns = values;
+    //update();
+  }
+
+  void changeSelectedAreas(values) {
+    selectedAreas = values;
+    //update();
+  }
+
+  void changeValue(value, variable) {
+    if(variable == "genre") {
+      genreDrpDownValue = value;
+    }else if(variable == "economicDependents"){
+      economicDependentsDropDownValue = value;
+    }else if(variable == "maritalStatus"){
+      maritalStatusDropDownValue = value;
+    }else if(variable == "scholarship"){
+      scholarshipValue = value;
+    }else if(variable == "fiscal"){
+      fiscalSituationValue = value;
+    }else if(variable == "specialty"){
+      specialtyValue = value;
+    }else if(variable == "specialty2"){
+      specialtyValue2 = value;
+    }else if(variable == "specialty3"){
+      specialtyValue3 = value;
+    }
+    update();
+  }
+
+  void register() async {
+
+    List zones = selectedZones.map((e) => {
+      'zone_id': e.id
+    }).toList();
+
+    List areas = selectedAreas.map((e) => {
+      'area_id': e.id
+    }).toList();
+
+    List turns = selectedTurns.map((e) => {
+      'turn_id': e.id
+    }).toList();
+
+    int error = 0;
+
+    String password;
+    if(birthdayController.text.isNotEmpty){
+      password = birthdayController.text.split('/').join('');
+    }else{
+      Get.defaultDialog(
+        title: "Error",
+        content: const Text("Por favor inserta una fecha de nacimiento")
+      );
+      password = '';
+      error += 1;
+    }
+
+    if(phoneController.text.isEmpty){
+      error++;
+      Get.defaultDialog(
+        title: "Error",
+        content: const Text("Inserta un valor en el teléfono por favor")
+      );
+    }
+    if(phoneController.text.length != 10) {
+      error++;
+      Get.defaultDialog(
+        title: "Error" ,
+        content: const Text("El celular debe tener 10 números, Ejemplo: '6141182833'")
+      );
+    }
+
+    User user = User(
+      name: nameController.text,
+      lastNameFather: lastNameFatherController.text,
+      lastNameMother: lastNameMotherController.text,
+      cellphone: phoneController.text,
+      birthday: birthdayController.text,
+      street: streetController.text,
+      streetNumber: numberController.text,
+      colony: colonyController.text,
+      zip: zipController.text,
+      state: stateDropDownValue,
+      city: cityDropDownValue,
+      genre: genreDrpDownValue,
+      maritalStatus: maritalStatusDropDownValue,
+      economicDependents: economicDependentsDropDownValue,
+      educationLevelId: scholarshipValue.id,
+      educationLevelFinish: finishYearScholarship.text,
+      firstWork: firstWorkValue,
+      fiscalSituation: fiscalSituationValue,
+      position1: positionController.text,
+      company1: companyController.text,
+      initDate1: initDateController.text,
+      finishDate1: finishDateController.text,
+      specialty1: specialtyValue,
+      position2: positionController2.text,
+      company2: companyController2.text,
+      initDate2: initDateController2.text,
+      finishDate2: finishDateController2.text,
+      specialty2: specialtyValue2,
+      position3: positionController3.text,
+      company3: companyController3.text,
+      initDate3: initDateController3.text,
+      finishDate3: finishDateController.text,
+      specialty3: specialtyValue,
+      description: haveSpecialtyController.text,
+      zones: zones, 
+      areas: areas, 
+      turns: turns, 
+      password: password
+    );
+
+    print(json.encode(user.toJson()));
+    String jsonUser = json.encode(user.toJson());
+    print(error);
+    if(error == 0) {
+      isLoading = true;
+      update();
+
+      String register = await Utils.registerUser(jsonUser);
+      print(register);
+      if(register == "OK") {
+        await Utils.login(phoneController.text, password );
+        isLoading = false;
+        update();
+      }
+    }
+
+
   }
 
 }

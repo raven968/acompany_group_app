@@ -31,7 +31,8 @@ class _Step8State extends State<Step8> {
             title: "Areas de Experiencia",
             buttonText: "Areas de Experiencia",
             selectedItems: widget.con.selectedAreas,
-            items: widget.con.areaItems
+            items: widget.con.areaItems,
+            change: widget.con.changeSelectedAreas,
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),

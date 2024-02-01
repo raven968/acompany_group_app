@@ -28,6 +28,7 @@ class _Step6State extends State<Step6> {
             labelText: "¿Es tu Primer Trabajo?",
             icon: const Icon(Icons.work),
             con: widget.con,
+            type: 1,
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
 
@@ -37,6 +38,8 @@ class _Step6State extends State<Step6> {
             list: widget.con.fiscalSituationList,
             labelText: "Constancia de Situación Fiscal:",
             icon: const Icon(Icons.description),
+            con: widget.con,
+            type: 2,
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           
@@ -55,7 +58,9 @@ class DropDownButton extends StatefulWidget {
   final Icon icon;
   final String labelText;
 
-  final RegisterPageController? con;
+  RegisterPageController con;
+
+  int type;
 
   DropDownButton({
     super.key,
@@ -63,7 +68,8 @@ class DropDownButton extends StatefulWidget {
     required this.list,
     required this.icon,
     required this.labelText,
-    this.con
+    required this.con,
+    required this.type
   });
 
   @override
@@ -90,7 +96,7 @@ class _DropDownButtonState extends State<DropDownButton> {
         prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
-          widget.con?.changeNumberOfSteps(value);
+          widget.type == 1 ? widget.con.changeNumberOfSteps(value) : widget.con.changeValue(value, "fiscal");
       },
       items: widget.list.map<DropdownMenuItem<String>>((value) {
         return DropdownMenuItem<String>(

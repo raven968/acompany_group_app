@@ -11,11 +11,16 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAccountPageController extends GetxController {
 
   XFile? pickedFile;
   File? imageFile;
+
+  String name = '';
+  String lastName = '';
+  var user = {};
 
   String imagePath = 'assets/img/blank-user-profile.png';
 
@@ -40,6 +45,14 @@ class MyAccountPageController extends GetxController {
         state: stepState(7),
       )
     ];
+    getName();
+  }
+
+  void getName() async {
+    final prefs = await SharedPreferences.getInstance();
+    name = prefs.getString('user_name') ?? '';
+    lastName = prefs.getString('user_last_name') ?? '';
+    update();
   }
 
   void logout() {
@@ -280,4 +293,21 @@ class MyAccountPageController extends GetxController {
     firstWorkValue = value;
     update();
   }
+
+  void changeSelectedZones(values) {
+    selectedZones = values;
+    //update();
+  }
+
+  void changeSelectedTurns(values) {
+    selectedTurns = values;
+    //update();
+  }
+
+  void changeSelectedAreas(values) {
+    selectedAreas = values;
+    //update();
+  }
+
+  
 }

@@ -28,6 +28,8 @@ class _Step4State extends State<Step4> {
             list: widget.con.genreList,
             labelText: "Genero:",
             icon: const Icon(Icons.man),
+            con: widget.con,
+            field: "genre",
           ),
           //CITY
           DropDownButton(
@@ -35,6 +37,8 @@ class _Step4State extends State<Step4> {
             list: widget.con.maritalStatusList,
             labelText: "Estado Civil:",
             icon: const Icon(Icons.woman_2),
+            con: widget.con,
+            field: "maritalStatus",
           ),
           //CITY
           DropDownButton(
@@ -42,6 +46,8 @@ class _Step4State extends State<Step4> {
             list: widget.con.economicDependentsList,
             labelText: "Dependientes Económicos:",
             icon: const Icon(Icons.group),
+            con: widget.con,
+            field: "economicDependents",
           ),
 
         ],
@@ -58,13 +64,17 @@ class DropDownButton extends StatefulWidget {
   final List list;
   final Icon icon;
   final String labelText;
+  RegisterPageController con;
+  String field;
 
   DropDownButton({
     super.key,
     required this.value,
     required this.list,
     required this.icon,
-    required this.labelText
+    required this.labelText,
+    required this.con,
+    required this.field
   });
 
   @override
@@ -91,7 +101,7 @@ class _DropDownButtonState extends State<DropDownButton> {
         prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
-          widget.value = value!;
+          widget.con.changeValue(value, widget.field);
       },
       items: widget.list.map<DropdownMenuItem<String>>((value) {
         return DropdownMenuItem<String>(

@@ -1,3 +1,4 @@
+import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
@@ -9,13 +10,15 @@ class SelectMultipleWidget extends StatefulWidget {
   String buttonText;
   List<MultiSelectItem> items;
   List selectedItems;
+  Function change;
 
   SelectMultipleWidget({
     super.key,
     required this.title,
     required this.buttonText,
     required this.selectedItems,
-    required this.items
+    required this.items,
+    required this.change
   });
 
   @override
@@ -54,15 +57,11 @@ class _SelectMultipleWidgetState extends State<SelectMultipleWidget> {
             ),
             items: widget.items,
             onConfirm: (values) {
-              setState(() {
-                widget.selectedItems = values;
-              });
+                widget.change(values);
             },
             chipDisplay: MultiSelectChipDisplay(
               onTap: (value) {
-                setState(() {
                   widget.selectedItems.remove(value);
-                });
               },
               chipColor: Utils.appSecondBlue,
               textStyle: const TextStyle(

@@ -1,14 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
 
 import 'package:acompany_group_app/models/area.dart';
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/models/turn.dart';
+import 'package:acompany_group_app/models/user.dart';
 import 'package:acompany_group_app/models/zone.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils {
   static const Color appSkyBlue = Color.fromARGB(255, 223, 246, 255);
@@ -173,6 +177,75 @@ class Utils {
       print(e);
       return scholarships;
     }
+  }
+
+  static Future<String> registerUser(user) async {
+    try{
+      
+      var url = Uri.parse('$API_URL/register-api');
+
+      var headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      };
+
+      //String jsonUser = jsonEncode(user.toJson());
+
+      var response = await http.post(url, body:user, headers: headers );
+
+      /*var request = http.Request('POST', url);
+
+      request.body = user;
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();*/
+
+      //var response = await apiRequest('$API_URL/register-api', user);
+
+      if(response.statusCode == 200) {
+        Get.snackbar('Exito', 'Registro exitoso');
+        return "OK";
+      }else{
+        inspect(response);
+        Get.snackbar('Error', 'Error al registrar, porfavor intenta mas tarde');
+        return "NOT OK";
+      }
+
+    }catch(e){
+      print(e);
+      return e.toString();
+    }
+  }
+
+  static Future login(phone, password) async{
+    var url = Uri.parse('$API_URL/login');
+
+    var body = { 'cellphone': phone, 'password': password };
+
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    var encodeBody = json.encode(body);
+
+   var response = await http.post(url, body:encodeBody, headers: headers );
+  inspect(response);
+    if(response.statusCode == 200) {
+      final prefs = await SharedPreferences.getInstance();
+
+        var user = jsonDecode(response.body);
+        prefs.setString('api-token', user['token'] ?? '');
+        prefs.setString('user_name', user['name'] ?? '');
+        prefs.setString('user_last_name', user['last_name_father'] ?? '');
+        prefs.setString('user_id', user['id'].toString() ?? '');
+      
+        Get.offAllNamed("/home",arguments: [{"user": user}]);
+        Get.snackbar(
+            'Bienvenido ${user.fullname}', 'Acabas de iniciar sesion');
+    }else{
+      Get.snackbar("Error", "Datos intecorrectos");
+    }
+
   }
 
 }

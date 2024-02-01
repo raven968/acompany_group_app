@@ -45,7 +45,8 @@ class Step1State extends State<Step1> {
             title: "Zonas",
             buttonText: "Zonas en las que buscas trabajo",
             selectedItems: widget.con.selectedZones,
-            items: widget.con.zoneItems
+            items: widget.con.zoneItems,
+            change: widget.con.changeSelectedZones,
           ),
           //---- ZONES END ----//
 
@@ -55,7 +56,8 @@ class Step1State extends State<Step1> {
             title: "Turnos",
             buttonText: "Turnos en las que buscas trabajo",
             selectedItems: widget.con.selectedTurns,
-            items: widget.con.turnItems
+            items: widget.con.turnItems,
+            change: widget.con.changeSelectedTurns,
           ),
           //---- TURNS END ----//
         ],

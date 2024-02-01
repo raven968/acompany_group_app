@@ -45,6 +45,8 @@ class _Step2State extends State<Step2> {
             icon: Icons.badge,
             keyboardType: TextInputType.text,
           ),
+
+
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           //CELLPHONE NUMBER
           RegisterFieldWidget(
@@ -53,6 +55,8 @@ class _Step2State extends State<Step2> {
             icon: Icons.phone,
             keyboardType: TextInputType.number,
           ),
+
+
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           //BIRTHDAY
           TextFormField(

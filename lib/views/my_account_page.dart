@@ -91,9 +91,9 @@ class _MyAccountPageState extends State<MyAccountPage> {
 
                 const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
 
-                const Text(
-                  "Jose Aron Jimenez",
-                  style: TextStyle(
+                Text(
+                  '${_.name} ${_.lastName}',
+                  style: const TextStyle(
                     fontSize: 18.0
                   ),
                 ),

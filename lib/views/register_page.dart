@@ -38,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
         },
         child: Scaffold(
           backgroundColor: Utils.appSkyBlue,
-          body: SingleChildScrollView(
+          body: _.isLoading ? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
             child: Column(
               children: [
                 Container(
