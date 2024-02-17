@@ -33,7 +33,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
     return GetBuilder<MyAccountPageController>(
       init: MyAccountPageController(),
       builder: (_) => Scaffold(
-        key: _.scaffoldKey1,
+        key: _.scaffoldKey2,
         drawer: Container(
             padding: EdgeInsets.only(top: height * .12, bottom: height * .12),
             child: const SideMenu()),
@@ -75,7 +75,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
         backgroundColor: Utils.appSkyBlue,
         body: Center(
           child: SingleChildScrollView(
-            child: Column(
+            child: _.isLoading2 ? const Center(child: CircularProgressIndicator()) : Column(
               children: [
             
                 const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
@@ -83,7 +83,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 GestureDetector(
                   onTap: () { _.showAlertDialog(); },
                   child: CircleAvatar(
-                    backgroundImage: AssetImage(_.imagePath),
+                    backgroundImage: _.isFromUrl ? Image.network(_.imagePath).image : _.hasPhoto ? Image.file(_.imageFile!).image : AssetImage(_.imagePath),
                     backgroundColor: Utils.appSkyBlue,
                     radius: (width * .20),
                   ),
@@ -139,13 +139,13 @@ class _MyAccountPageState extends State<MyAccountPage> {
                           child: Row(
                             children: <Widget>[
                               ElevatedButton(
-                                onPressed: details.onStepContinue,
+                                onPressed: _.lastStep == _.currentStep ? _.register : details.onStepContinue,
                                 style: ButtonStyle(
                                   side: MaterialStateProperty.all(const BorderSide(color: Utils.appSecondBlue)),
                                   backgroundColor: MaterialStateProperty.all(Utils.appSkyBlue)
                                 ),
                                 child: Text(
-                                  _.lastStep == _.currentStep ? 'Registrarme!' : 'Sig.',
+                                  _.lastStep == _.currentStep ? 'Guardar!' : 'Sig.',
                                   style: const TextStyle(
                                     color: Utils.appSecondBlue
                                   ),
@@ -171,7 +171,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                     
                         Step(
                           title: const Text(""),
-                          content: Step1(con: _, key: step1Key,),
+                          content: Step1(con: _),
                           isActive: _.currentStep == 0,
                           state: _.stepState(0)
                         ),
@@ -194,13 +194,13 @@ class _MyAccountPageState extends State<MyAccountPage> {
                         ),
                         Step(
                           title: const Text(""),
-                          content: Step4(con: _, key: step4Key,),
+                          content: Step4(con: _),
                           isActive: _.currentStep == 3,
                           state: _.stepState(3),
                         ),
                         Step(
                           title: const Text(""),
-                          content: Step5(con: _, key: step5Key,),
+                          content: Step5(con: _),
                           isActive: _.currentStep == 4,
                           state: _.stepState(4),
                         ),

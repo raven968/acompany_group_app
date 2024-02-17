@@ -8,14 +8,16 @@ class RegisterFieldWidget extends StatefulWidget {
   final String hint;
   final IconData icon;
   final TextInputType keyboardType;
+  bool? enabled;
   
 
-  const RegisterFieldWidget({
+  RegisterFieldWidget({
     super.key,
     required this.controller,
     required this.hint,
     required this.icon,
-    required this.keyboardType
+    required this.keyboardType,
+    this.enabled
   });
 
   @override
@@ -28,6 +30,7 @@ class _RegisterFieldWidgetState extends State<RegisterFieldWidget> {
     return TextFormField(
       controller: widget.controller,
       textAlignVertical: TextAlignVertical.center,
+      enabled: widget.enabled ?? true,
       decoration: InputDecoration(
         labelText: widget.hint,
         labelStyle: const TextStyle(

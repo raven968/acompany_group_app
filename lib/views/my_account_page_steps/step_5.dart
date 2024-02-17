@@ -1,8 +1,6 @@
 import 'package:acompany_group_app/controllers/my_account_page_controller.dart';
-import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/models/scholarship.dart';
 import 'package:acompany_group_app/utils.dart';
-import 'package:acompany_group_app/widgets/register_field_widget.dart';
 import 'package:flutter/material.dart';
 
 class Step5 extends StatefulWidget {
@@ -27,19 +25,41 @@ class _Step5State extends State<Step5> {
 
           //SCHOLARSHIP
           DropDownButton(
-            value: widget.con.scholarshipsList.first,
+            value: widget.con.scholarshipValue,
             list: widget.con.scholarshipsList,
             labelText: "Escolaridad:",
             icon: const Icon(Icons.school),
+            con: widget.con,
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           //Experience
-          RegisterFieldWidget(
+          TextFormField(
             controller: widget.con.finishYearScholarship,
-            hint: "Año de Terminado",
-            icon: Icons.calendar_month,
-            keyboardType: TextInputType.number
-          ),
+            textAlignVertical: TextAlignVertical.center,
+            decoration: const InputDecoration(
+              hintText: 'Fecha de Termino',
+              hintStyle: TextStyle(
+                color: Color.fromARGB(117, 6, 40, 61)
+              ),
+              prefixIcon: Icon(
+                Icons.calendar_month,
+                color: Utils.appSecondBlue,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Utils.appNavyBlue
+                )
+              ),
+              focusedBorder: UnderlineInputBorder(),
+              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
+            ),
+            autocorrect: true,
+            enableSuggestions: true,
+            keyboardType: TextInputType.none,
+            onTap: () {
+              widget.con.selectDate(context, widget.con.finishYearScholarship);
+            } 
+          )
 
         ],
       ),
@@ -54,13 +74,15 @@ class DropDownButton extends StatefulWidget {
   final List list;
   final Icon icon;
   final String labelText;
+  MyAccountPageController con;
 
   DropDownButton({
     super.key,
     required this.value,
     required this.list,
     required this.icon,
-    required this.labelText
+    required this.labelText,
+    required this.con
   });
 
   @override
@@ -87,7 +109,7 @@ class _DropDownButtonState extends State<DropDownButton> {
         prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
-          widget.value = value!;
+          widget.con.changeValue(value, "scholarship");
       },
       items: widget.list.map<DropdownMenuItem<Scholarship>>((value) {
         return DropdownMenuItem<Scholarship>(

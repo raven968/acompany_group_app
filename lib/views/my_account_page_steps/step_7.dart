@@ -1,5 +1,4 @@
 import 'package:acompany_group_app/controllers/my_account_page_controller.dart';
-import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:acompany_group_app/widgets/register_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +125,9 @@ class _Step7State extends State<Step7> {
             value: widget.con.specialtyValue,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
-            labelText: "Especialidad"
+            labelText: "Especialidad",
+            con: widget.con,
+            field: "specialty",
           ),
 
           /////////////////////////
@@ -232,7 +233,9 @@ class _Step7State extends State<Step7> {
             value: widget.con.specialtyValue2,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
-            labelText: "Especialidad"
+            labelText: "Especialidad",
+            con: widget.con,
+            field: "specialty2",
           ),
 
           ////////////////////////
@@ -338,7 +341,9 @@ class _Step7State extends State<Step7> {
             value: widget.con.specialtyValue3,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
-            labelText: "Especialidad"
+            labelText: "Especialidad",
+            con: widget.con,
+            field: "specialty3",
           ),
 
         ]
@@ -355,13 +360,17 @@ class DropDownButton extends StatefulWidget {
   final List list;
   final Icon icon;
   final String labelText;
+  MyAccountPageController con;
+  String field;
 
   DropDownButton({
     super.key,
     required this.value,
     required this.list,
     required this.icon,
-    required this.labelText
+    required this.labelText,
+    required this.con,
+    required this.field
   });
 
   @override
@@ -388,7 +397,7 @@ class _DropDownButtonState extends State<DropDownButton> {
         prefixIconColor: Utils.appSecondBlue
       ),
       onChanged: (value) {
-          widget.value = value!;
+          widget.con.changeValue(value, widget.field);
       },
       items: widget.list.map<DropdownMenuItem<String>>((value) {
         return DropdownMenuItem<String>(

@@ -1,5 +1,4 @@
 import 'package:acompany_group_app/controllers/my_account_page_controller.dart';
-import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/widgets/register_field_widget.dart';
 import 'package:flutter/material.dart';
 

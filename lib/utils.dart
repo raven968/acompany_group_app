@@ -27,7 +27,7 @@ class Utils {
 
   //API ROUTES// GET UTILS
 
-  static String API_URL = 'http://10.0.2.2:8000/api';
+  static String API_URL = 'https://operadoresmaquiladora.com/api';
 
   static Future<List<Area>> getAreas() async {
     try{
@@ -60,7 +60,6 @@ class Utils {
 
       var response =
           await http.get(url);
-
       if (response.statusCode == 200) {
         List<Map<String, dynamic>> decodedJson = List<Map<String, dynamic>>.from(jsonDecode(response.body));
         
@@ -241,11 +240,75 @@ class Utils {
       
         Get.offAllNamed("/home",arguments: [{"user": user}]);
         Get.snackbar(
-            'Bienvenido ${user.fullname}', 'Acabas de iniciar sesion');
+            'Bienvenido ${user['name']} ${user['last_name_father']}', 'Acabas de iniciar sesion');
     }else{
       Get.snackbar("Error", "Datos intecorrectos");
     }
 
+  }
+
+  static Future me(id) async{
+    final prefs = await SharedPreferences.getInstance();
+    final String apiToken = prefs.getString('api-token') ?? '';
+    var url = Uri.parse('$API_URL/me?id=$id');
+
+    var response = await http.get(url, headers: {'Authorization': 'Bearer $apiToken'});
+    
+    if(response.statusCode == 200){
+      return json.decode(response.body);
+    }else{
+      Get.snackbar("Error", "Error al traer datos de usuario");
+      Get.deleteAll();
+      Get.offAndToNamed('/login');
+    }
+  }
+
+  static Future<String> updateUser(user, id) async {
+    try{
+      final prefs = await SharedPreferences.getInstance();
+      final String apiToken = prefs.getString('api-token') ?? '';
+      var url = Uri.parse('$API_URL/update?user_id=$id');
+
+      var headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $apiToken'
+      };
+
+      var response = await http.post(url, body:user, headers: headers );
+
+      if(response.statusCode == 200) {
+        Get.snackbar('Éxito', 'Actualización exitosa exitoso');
+        return "OK";
+      }else{
+        inspect(response);
+        Get.snackbar('Error', 'Error al actualizar, por favor intenta mas tarde');
+        return "NOT OK";
+      }
+
+    }catch(e){
+      print(e);
+      return e.toString();
+    }
+  }
+
+  static Future uploadPhotoToApi(path) async {
+
+    final prefs = await SharedPreferences.getInstance();
+    final String apiToken = prefs.getString('api-token') ?? '';
+    var url = Uri.parse('$API_URL/upload-photo');
+    var request = http.MultipartRequest('POST', url);
+
+    request.headers['Authorization'] = 'Bearer $apiToken';
+    request.files.add(await http.MultipartFile.fromPath('image', path));
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      Get.snackbar('Exito','Foto subida con éxito');
+    } else {
+      Get.snackbar('Error', 'Error al subir la foto: ${response.reasonPhrase}');
+    }
   }
 
 }

@@ -80,7 +80,7 @@ class RegisterPageController extends GetxController {
 
   List<String> genreList = ['Hombre', 'Mujer', 'No especifica'];
   List<String> maritalStatusList = ['Soltero', 'Casado', 'Union Libre'];
-  List<String> economicDependentsList = ['1','2','3','4','5'];
+  List<String> economicDependentsList = ['0','1','2','3','4','5'];
 
   List<String> firstWorkList = ['SI', 'NO'];
   String firstWorkValue = 'NO';
@@ -332,7 +332,7 @@ class RegisterPageController extends GetxController {
 
     String password;
     if(birthdayController.text.isNotEmpty){
-      password = birthdayController.text.split('/').join('');
+      password = birthdayController.text.split('/').reversed.join('');
     }else{
       Get.defaultDialog(
         title: "Error",

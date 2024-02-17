@@ -1,4 +1,3 @@
-import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
@@ -42,6 +41,7 @@ class _SelectMultipleWidgetState extends State<SelectMultipleWidget> {
             initialChildSize: 0.4,
             listType: MultiSelectListType.CHIP,
             buttonText: Text(widget.buttonText),
+            initialValue: widget.selectedItems,
             buttonIcon: const Icon(
               Icons.arrow_drop_down_circle_rounded,
               color: Utils.appSecondBlue,

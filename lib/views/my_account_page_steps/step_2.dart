@@ -46,6 +46,8 @@ class _Step2State extends State<Step2> {
             icon: Icons.badge,
             keyboardType: TextInputType.text,
           ),
+
+
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           //CELLPHONE NUMBER
           RegisterFieldWidget(
@@ -53,12 +55,16 @@ class _Step2State extends State<Step2> {
             hint: "Celular",
             icon: Icons.phone,
             keyboardType: TextInputType.number,
+            enabled: false,
           ),
+
+
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           //BIRTHDAY
           TextFormField(
             controller: widget.con.birthdayController,
             textAlignVertical: TextAlignVertical.center,
+            enabled: false,
             decoration: const InputDecoration(
               hintText: 'Fecha de Nacimiento',
               hintStyle: TextStyle(
