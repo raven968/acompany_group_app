@@ -29,9 +29,10 @@ class Utils {
 
   static String API_URL = 'https://operadoresmaquiladora.com/api';
 
+  //Areas y renamed to Especilties
   static Future<List<Area>> getAreas() async {
     try{
-      var url = Uri.parse('$API_URL/areas');
+      var url = Uri.parse('$API_URL/specialties');
 
       var response =
           await http.get(url);
@@ -50,6 +51,31 @@ class Utils {
     }catch(e){
       List<Area> areas = [];
       print(e);
+      return areas;
+    }
+  }
+
+  static Future<List<String>> getSpecialties() async {
+    try{
+      var url = Uri.parse('$API_URL/areas');
+
+      var response =
+          await http.get(url);
+
+      if (response.statusCode == 200) {
+        //print(jsonDecode(response.body) as List);
+        List<Map<String, dynamic>> decodedJson = List<Map<String, dynamic>>.from(jsonDecode(response.body));
+        
+        List<String> areas = decodedJson.map((item) => item['area'].toString()).toList();
+        return areas;
+      } else {
+        List<String> areas = [];
+        Get.snackbar('Error', 'Error al cargar datos');
+        return areas;
+      }
+    }catch(e){
+      List<String> areas = [];
+      
       return areas;
     }
   }

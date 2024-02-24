@@ -23,23 +23,23 @@ class User {
     String maritalStatus;
     String economicDependents;
     int? educationLevelId;
-    String educationLevelFinish;
+    String educationStatus;
     String firstWork;
     String fiscalSituation;
     String position1;
     String company1;
-    String initDate1;
-    String finishDate1;
+    String antiquity1;
+    String finishYear1;
     String specialty1;
     String position2;
     String company2;
-    String initDate2;
-    String finishDate2;
+    String antiquity2;
+    String finishYear2;
     String specialty2;
     String position3;
     String company3;
-    String initDate3;
-    String finishDate3;
+    String antiquity3;
+    String finishYear3;
     String specialty3;
     String description;
     List zones;
@@ -63,23 +63,23 @@ class User {
         required this.maritalStatus,
         required this.economicDependents,
         this.educationLevelId,
-        required this.educationLevelFinish,
+        required this.educationStatus,
         required this.firstWork,
         required this.fiscalSituation,
         required this.position1,
         required this.company1,
-        required this.initDate1,
-        required this.finishDate1,
+        required this.antiquity1,
+        required this.finishYear1,
         required this.specialty1,
         required this.position2,
         required this.company2,
-        required this.initDate2,
-        required this.finishDate2,
+        required this.antiquity2,
+        required this.finishYear2,
         required this.specialty2,
         required this.position3,
         required this.company3,
-        required this.initDate3,
-        required this.finishDate3,
+        required this.antiquity3,
+        required this.finishYear3,
         required this.specialty3,
         required this.description,
         required this.zones,
@@ -104,23 +104,23 @@ class User {
         "marital_status": maritalStatus,
         "economic_dependents": economicDependents,
         "education_level_id": educationLevelId,
-        "education_level_finish": educationLevelFinish,
+        "education_status": educationStatus,
         "first_work": firstWork,
         "fiscal_situation": fiscalSituation,
         "position1": position1,
         "company1": company1,
-        "init_date1": initDate1,
-        "finish_date1": finishDate1,
+        "antiquity1": antiquity1,
+        "finish_year1": finishYear1,
         "specialty1": specialty1,
         "position2": position2,
         "company2": company2,
-        "init_date2": initDate2,
-        "finish_date2": finishDate2,
+        "antiquity2": antiquity2,
+        "finish_year2": finishYear2,
         "specialty2": specialty2,
         "position3": position3,
         "company3": company3,
-        "init_date3": initDate3,
-        "finish_date3": finishDate3,
+        "antiquity3": antiquity3,
+        "finish_year3": finishYear3,
         "specialty3": specialty3,
         "description": description,
         "zones": zones,

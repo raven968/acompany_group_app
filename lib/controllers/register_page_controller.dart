@@ -21,7 +21,7 @@ class RegisterPageController extends GetxController {
 
   int currentStep = 0;
 
-  bool isLoading = false;
+  bool isLoading = true;
 
   int numberOfSteps = 5;
   int lastStep = 5;
@@ -108,7 +108,15 @@ class RegisterPageController extends GetxController {
 
   List<Scholarship> scholarshipsList = [];
   Scholarship scholarshipValue = Scholarship();
+
+  List<String> educationStatusList = ['Trunco', 'Terminado'];
+  String educationStatusValue = 'Trunco';
   
+  //ANTIQUITY
+  List<String> antiquityList = ['1 a 3 meses', '3 a 6 meses', '6 a 12 meses', '1 a 2 años', 'Mas de 2 años'];
+  String antiquityValue = '1 a 3 meses';
+  String antiquityValue2 = '1 a 3 meses';
+  String antiquityValue3 = '1 a 3 meses';
 
   //ZONES
   List<Zone> _zonesList = [];
@@ -129,11 +137,13 @@ class RegisterPageController extends GetxController {
   void onInit() {
     super.onInit();
     getAreas();
+    getSpecialties();
     getStates();
     getCities();
     getZones();
     getTurns();
     getScholarchips();
+    setLoading();
   }
 
   @override
@@ -158,6 +168,13 @@ class RegisterPageController extends GetxController {
 
     numberOfSteps = 7;
     lastStep = 7;
+  }
+
+  void setLoading() {
+    Future.delayed(const Duration(seconds: 3),(){
+      isLoading = false;
+      update();
+    });
   }
 
   void nextStep() {
@@ -220,7 +237,7 @@ class RegisterPageController extends GetxController {
 
     areaItems = areasList
                     .map((area) => MultiSelectItem<Area>(area, area.area))
-                    .toList();               
+                    .toList();
   }
 
   void getZones() async {
@@ -241,10 +258,17 @@ class RegisterPageController extends GetxController {
 
   }
 
+  void getSpecialties() async {
+    specialtyList = await Utils.getSpecialties();
+    specialtyValue = specialtyList.first;
+    specialtyValue2 = specialtyList.first;
+    specialtyValue3 = specialtyList.first;
+  }
+
   void getScholarchips() async {
     scholarshipsList = await Utils.getEducationLevels();
     scholarshipValue = scholarshipsList.first;
-    inspect(scholarshipsList);
+    
   }
 
   void getStates() async {
@@ -304,6 +328,14 @@ class RegisterPageController extends GetxController {
       scholarshipValue = value;
     }else if(variable == "fiscal"){
       fiscalSituationValue = value;
+    }else if(variable == "antiquity"){
+      antiquityValue = value;
+    }else if(variable == "antiquity2"){
+      antiquityValue2 = value;
+    }else if(variable == "antiquity3"){
+      antiquityValue3 = value;
+    }else if(variable == 'Estatus'){
+      educationStatusValue = value;
     }else if(variable == "specialty"){
       specialtyValue = value;
     }else if(variable == "specialty2"){
@@ -373,23 +405,23 @@ class RegisterPageController extends GetxController {
       maritalStatus: maritalStatusDropDownValue,
       economicDependents: economicDependentsDropDownValue,
       educationLevelId: scholarshipValue.id,
-      educationLevelFinish: finishYearScholarship.text,
+      educationStatus: educationStatusValue,
       firstWork: firstWorkValue,
       fiscalSituation: fiscalSituationValue,
       position1: positionController.text,
       company1: companyController.text,
-      initDate1: initDateController.text,
-      finishDate1: finishDateController.text,
+      antiquity1: antiquityValue,
+      finishYear1: initDateController.text,
       specialty1: specialtyValue,
       position2: positionController2.text,
       company2: companyController2.text,
-      initDate2: initDateController2.text,
-      finishDate2: finishDateController2.text,
+      antiquity2: antiquityValue2,
+      finishYear2: initDateController2.text,
       specialty2: specialtyValue2,
       position3: positionController3.text,
       company3: companyController3.text,
-      initDate3: initDateController3.text,
-      finishDate3: finishDateController.text,
+      antiquity3: antiquityValue3,
+      finishYear3: initDateController3.text,
       specialty3: specialtyValue,
       description: haveSpecialtyController.text,
       zones: zones, 

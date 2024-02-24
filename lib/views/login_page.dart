@@ -66,7 +66,18 @@ class _LoginPageState extends State<LoginPage> {
                                   type: 'usuario',
                                   controller: _.emailController
                               ),
+
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
           
+                              const Text(
+                                'Tu usuario es tu numero de celular',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.black54
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+
                               const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
                               
                               TextFormField(

@@ -58,65 +58,25 @@ class _Step7State extends State<Step7> {
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-
-          //INIT DATE
-          TextFormField(
-            controller: widget.con.initDateController,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Inicio',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.initDateController);
-            } 
+          
+          //FINISH DATE
+          DropDownButton(
+            value: widget.con.antiquityValue,
+            list: widget.con.antiquityList,
+            icon: const Icon(Icons.work_history),
+            labelText: 'Antigüedad',
+            con: widget.con,
+            field: 'antiquity' 
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-          
-          //FINISH DATE
-          TextFormField(
-            controller: widget.con.finishDateController,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Fin',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.finishDateController);
-            } 
+
+          //INIT DATE
+          RegisterFieldWidget(
+            controller:widget.con.initDateController,
+            hint: 'Año de Salida', 
+            icon: Icons.calendar_month,
+            keyboardType: TextInputType.number
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
@@ -125,7 +85,7 @@ class _Step7State extends State<Step7> {
             value: widget.con.specialtyValue,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
-            labelText: "Especialidad",
+            labelText: "Area de experiencia",
             con: widget.con,
             field: "specialty",
           ),
@@ -167,64 +127,24 @@ class _Step7State extends State<Step7> {
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
 
-          //INIT DATE
-          TextFormField(
-            controller: widget.con.initDateController2,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Inicio',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.initDateController2);
-            } 
+          //FINISH DATE
+          DropDownButton(
+            value: widget.con.antiquityValue2,
+            list: widget.con.antiquityList,
+            icon: const Icon(Icons.work_history),
+            labelText: 'Antigüedad',
+            con: widget.con,
+            field: 'antiquity2' 
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-          
-          //FINISH DATE
-          TextFormField(
-            controller: widget.con.finishDateController2,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Fin',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.finishDateController2);
-            } 
+
+          //INIT DATE
+          RegisterFieldWidget(
+            controller:widget.con.initDateController2,
+            hint: 'Año de Salida', 
+            icon: Icons.calendar_month,
+            keyboardType: TextInputType.number
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
@@ -233,7 +153,7 @@ class _Step7State extends State<Step7> {
             value: widget.con.specialtyValue2,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
-            labelText: "Especialidad",
+            labelText: "Area de Experiencia",
             con: widget.con,
             field: "specialty2",
           ),
@@ -275,64 +195,24 @@ class _Step7State extends State<Step7> {
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
 
-          //INIT DATE
-          TextFormField(
-            controller: widget.con.initDateController3,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Inicio',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.initDateController3);
-            } 
+          //FINISH DATE
+          DropDownButton(
+            value: widget.con.antiquityValue3,
+            list: widget.con.antiquityList,
+            icon: const Icon(Icons.work_history),
+            labelText: 'Antigüedad',
+            con: widget.con,
+            field: 'antiquity3' 
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-          
-          //FINISH DATE
-          TextFormField(
-            controller: widget.con.finishDateController3,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Fin',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.finishDateController3);
-            } 
+
+          //INIT DATE
+          RegisterFieldWidget(
+            controller:widget.con.initDateController3,
+            hint: 'Año de Salida', 
+            icon: Icons.calendar_month,
+            keyboardType: TextInputType.number
           ),
 
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
@@ -341,7 +221,7 @@ class _Step7State extends State<Step7> {
             value: widget.con.specialtyValue3,
             list: widget.con.specialtyList,
             icon: const Icon(Icons.work),
-            labelText: "Especialidad",
+            labelText: "Area de Experiencia",
             con: widget.con,
             field: "specialty3",
           ),

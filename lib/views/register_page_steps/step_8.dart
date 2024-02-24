@@ -27,8 +27,8 @@ class _Step8State extends State<Step8> {
           //---- ZONES ----//
           const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
           SelectMultipleWidget(
-            title: "Areas de Experiencia",
-            buttonText: "Areas de Experiencia",
+            title: "Especialidad Técnica",
+            buttonText: "Especialidad Técnica",
             selectedItems: widget.con.selectedAreas,
             items: widget.con.areaItems,
             change: widget.con.changeSelectedAreas,

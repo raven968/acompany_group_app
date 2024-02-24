@@ -33,34 +33,15 @@ class _Step5State extends State<Step5> {
             con: widget.con,
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-          //Experience
-          TextFormField(
-            controller: widget.con.finishYearScholarship,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: 'Fecha de Termino',
-              hintStyle: TextStyle(
-                color: Color.fromARGB(117, 6, 40, 61)
-              ),
-              prefixIcon: Icon(
-                Icons.calendar_month,
-                color: Utils.appSecondBlue,
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Utils.appNavyBlue
-                )
-              ),
-              focusedBorder: UnderlineInputBorder(),
-              contentPadding: EdgeInsets.fromLTRB(0, 1, 0, 1),
-            ),
-            autocorrect: true,
-            enableSuggestions: true,
-            keyboardType: TextInputType.none,
-            onTap: () {
-              widget.con.selectDate(context, widget.con.finishYearScholarship);
-            } 
-          )
+          //Education status
+          DropDownButton2(
+            value: widget.con.educationStatusValue,
+            list: widget.con.educationStatusList,
+            labelText: "Estatus:",
+            icon: const Icon(Icons.school),
+            con: widget.con,
+            field: 'Estatus',
+          ),
 
         ],
       ),
@@ -117,6 +98,68 @@ class _DropDownButtonState extends State<DropDownButton> {
           value: value,
           child: Text(
             value.scholarship,
+            style: const TextStyle(
+              fontSize: 16.0
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+
+class DropDownButton2 extends StatefulWidget {
+
+  //Variables
+  String value;
+  final List list;
+  final Icon icon;
+  final String labelText;
+  RegisterPageController con;
+  String field;
+
+  DropDownButton2({
+    super.key,
+    required this.value,
+    required this.list,
+    required this.icon,
+    required this.labelText,
+    required this.con,
+    required this.field
+  });
+
+  @override
+  State<DropDownButton2> createState() => _DropDownButton2State();
+}
+
+class _DropDownButton2State extends State<DropDownButton2> {
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<String>(
+      value: widget.value,
+      icon: const Icon(Icons.arrow_drop_down_circle),
+      iconEnabledColor: Utils.appSecondBlue,
+      elevation: 16,
+      isExpanded: true,
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
+      style: const TextStyle(color: Utils.appNavyBlue),
+      decoration: InputDecoration(
+        labelText: widget.labelText,
+        labelStyle: const TextStyle(
+          fontSize: 18.0
+        ),
+        prefixIcon: widget.icon,
+        prefixIconColor: Utils.appSecondBlue
+      ),
+      onChanged: (value) {
+          widget.con.changeValue(value, widget.field);
+      },
+      items: widget.list.map<DropdownMenuItem<String>>((value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
             style: const TextStyle(
               fontSize: 16.0
             ),

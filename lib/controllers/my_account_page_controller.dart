@@ -40,6 +40,7 @@ class MyAccountPageController extends GetxController {
     super.onInit();
     getAreas();
     getStates();
+    getSpecialties();
     //getCities();
     getZones();
     getTurns();
@@ -74,23 +75,30 @@ class MyAccountPageController extends GetxController {
 
       positionController.text = user['position1'] ?? '';
       companyController.text = user['company1'] ?? '';
-      if(user['init_date1'] != null) { initDateController.text = user['init_date1'].split(' ')[0].split('-').join('/');}else{ initDateController.text = '';}
-      if(user['finish_date1'] != null) { finishDateController.text = user['finish_date1'].split(' ')[0].split('-').join('/'); }else{ finishDateController.text = '';}
+      initDateController.text = user['finish_year1'] ?? '';
+      //if(user['init_date1'] != null) { initDateController.text = user['init_date1'].split(' ')[0].split('-').join('/');}else{ initDateController.text = '';}
+      //if(user['finish_date1'] != null) { finishDateController.text = user['finish_date1'].split(' ')[0].split('-').join('/'); }else{ finishDateController.text = '';}
       specialtyValue = user['specialty1'] ?? '';
+      antiquityValue = user['antiquity1'] ?? '';
 
       positionController2.text = user['position2'] ?? '';
       companyController2.text = user['company2'] ?? '';
-      if(user['init_date2'] != null) { initDateController2.text = user['init_date2'].split(' ')[0].split('-').join('/');}else{ initDateController2.text = '';}
-      if(user['finish_date2'] != null) { finishDateController2.text = user['finish_date2'].split(' ')[0].split('-').join('/'); }else{ finishDateController2.text = '';}
+      initDateController2.text = user['finish_year2'] ?? '';
+      //if(user['init_date2'] != null) { initDateController2.text = user['init_date2'].split(' ')[0].split('-').join('/');}else{ initDateController2.text = '';}
+      //if(user['finish_date2'] != null) { finishDateController2.text = user['finish_date2'].split(' ')[0].split('-').join('/'); }else{ finishDateController2.text = '';}
       specialtyValue2 = user['specialty2'] ?? '';
+      antiquityValue2 = user['antiquity2'] ?? '';
 
       positionController3.text = user['position3'] ?? '';
       companyController3.text = user['company3'] ?? '';
-      if(user['init_date3'] != null) { initDateController3.text = user['init_date3'].split(' ')[0].split('-').join('/');}else{ initDateController3.text = '';}
-      if(user['finish_date3'] != null) { finishDateController3.text = user['finish_date3'].split(' ')[0].split('-').join('/'); }else{ finishDateController3.text = '';}
+      initDateController3.text = user['finish_year3'] ?? '';
+      //if(user['init_date3'] != null) { initDateController3.text = user['init_date3'].split(' ')[0].split('-').join('/');}else{ initDateController3.text = '';}
+      //if(user['finish_date3'] != null) { finishDateController3.text = user['finish_date3'].split(' ')[0].split('-').join('/'); }else{ finishDateController3.text = '';}
       specialtyValue3 = user['specialty3'] ?? '';
+      antiquityValue3 = user['antiquity3'] ?? '';
       haveSpecialtyController.text = user['description'] ?? '';
-      
+      educationStatusValue = user['education_status'] ?? '';
+
       selectedZones = _zonesList.where((objeto1) => user['zones'].any((objeto2) => objeto2['zone']['id'] == objeto1.id)).toList();
       selectedTurns = _turnsList.where((objeto1) => user['turns'].any((objeto2) => objeto2['turn']['id'] == objeto1.id)).toList();
       selectedAreas = areasList.where((objeto1) => user['areas'].any((objeto2) => objeto2['area']['id'] == objeto1.id)).toList();
@@ -262,6 +270,14 @@ class MyAccountPageController extends GetxController {
   List<Scholarship> scholarshipsList = [];
   Scholarship scholarshipValue = Scholarship();
   
+  List<String> educationStatusList = ['Trunco', 'Terminado'];
+  String educationStatusValue = 'Trunco';
+  
+  //ANTIQUITY
+  List<String> antiquityList = ['1 a 3 meses', '3 a 6 meses', '6 a 12 meses', '1 a 2 años', 'Mas de 2 años'];
+  String antiquityValue = '1 a 3 meses';
+  String antiquityValue2 = '1 a 3 meses';
+  String antiquityValue3 = '1 a 3 meses';
 
   //ZONES
   List<Zone> _zonesList = [];
@@ -384,6 +400,13 @@ class MyAccountPageController extends GetxController {
 
   }
 
+    void getSpecialties() async {
+      specialtyList = await Utils.getSpecialties();
+      specialtyValue = specialtyList.first;
+      specialtyValue2 = specialtyList.first;
+      specialtyValue3 = specialtyList.first;
+    }
+
   void getScholarchips() async {
     scholarshipsList = await Utils.getEducationLevels();
     scholarshipValue = scholarshipsList.first;
@@ -445,6 +468,14 @@ class MyAccountPageController extends GetxController {
       maritalStatusDropDownValue = value;
     }else if(variable == "scholarship"){
       scholarshipValue = value;
+    }else if(variable == "antiquity"){
+      antiquityValue = value;
+    }else if(variable == "antiquity2"){
+      antiquityValue2 = value;
+    }else if(variable == "antiquity3"){
+      antiquityValue3 = value;
+    }else if(variable == 'Estatus'){
+      educationStatusValue = value;
     }else if(variable == "fiscal"){
       fiscalSituationValue = value;
     }else if(variable == "specialty"){
@@ -516,23 +547,23 @@ class MyAccountPageController extends GetxController {
       maritalStatus: maritalStatusDropDownValue,
       economicDependents: economicDependentsDropDownValue,
       educationLevelId: scholarshipValue.id,
-      educationLevelFinish: finishYearScholarship.text,
+      educationStatus: educationStatusValue,
       firstWork: firstWorkValue,
       fiscalSituation: fiscalSituationValue,
       position1: positionController.text,
       company1: companyController.text,
-      initDate1: initDateController.text,
-      finishDate1: finishDateController.text,
+      antiquity1: antiquityValue,
+      finishYear1: initDateController.text,
       specialty1: specialtyValue,
       position2: positionController2.text,
       company2: companyController2.text,
-      initDate2: initDateController2.text,
-      finishDate2: finishDateController2.text,
+      antiquity2: antiquityValue2,
+      finishYear2: initDateController2.text,
       specialty2: specialtyValue2,
       position3: positionController3.text,
       company3: companyController3.text,
-      initDate3: initDateController3.text,
-      finishDate3: finishDateController.text,
+      antiquity3: antiquityValue3,
+      finishYear3: initDateController3.text,
       specialty3: specialtyValue,
       description: haveSpecialtyController.text,
       zones: zones, 
