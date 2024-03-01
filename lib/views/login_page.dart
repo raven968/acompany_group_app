@@ -3,6 +3,7 @@ import 'package:acompany_group_app/utils.dart';
 import 'package:acompany_group_app/widgets/field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -42,6 +43,17 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
           
+                        Text(
+                          "Registrarte para el empleo de tus sueños",
+                          style: GoogleFonts.josefinSans(
+                            textStyle: const TextStyle(
+                              fontSize: 16.0,
+                              color: Utils.appNavyBlue
+                            ),
+                          ),  
+                          textAlign: TextAlign.center,
+                        ),
+
                         const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
           
                         //--- IMAGE ---//
@@ -175,14 +187,14 @@ class _LoginPageState extends State<LoginPage> {
                                   _.goToRegisterPage();
                                 },
                                 style: ButtonStyle(
-                                  backgroundColor: Utils.materialAppSkyBlue,
+                                  backgroundColor: Utils.materialAppSecondBlue,
                                   minimumSize: MaterialStateProperty.all(const Size(300,50)),
                                   side: MaterialStateProperty.all(const BorderSide(color: Utils.appSecondBlue))
                                 ),
                                 child: const Text(
                                   'Regístrate',
                                   style: TextStyle(
-                                    color: Utils.appSecondBlue
+                                    color: Colors.white
                                   ),
                                 ),
                                 

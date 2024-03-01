@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               ),
           
               Text(
-                "Pronto Podrás Buscar el empleo de tus sueños",
+                "Tu USUARIO es tu teléfono y tu CONTRASEÑA es tu fecha de nacimiento completa.",
                 style: GoogleFonts.josefinSans(
                   textStyle: const TextStyle(
                     fontSize: 20.0,

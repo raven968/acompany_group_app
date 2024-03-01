@@ -1,5 +1,6 @@
 import 'package:acompany_group_app/controllers/register_page_controller.dart';
 import 'package:acompany_group_app/widgets/select_multiple_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Step8 extends StatefulWidget {
@@ -60,7 +61,44 @@ class _Step8State extends State<Step8> {
                 )
               ),
             ),
-          )
+          ),
+
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+
+          Row(
+            children: [
+              Checkbox(
+                value: widget.con.buttonEnabled,
+                onChanged: (bool? value) {
+                  setState(() {
+                    widget.con.buttonEnabled = value!;
+                  });
+                }
+              ),
+              RichText(
+                text: TextSpan(
+                  text: 'Acepta los ',
+                  style: const TextStyle(color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Términos y Condiciones \n',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          widget.con.launchURL('https://operadoresmaquiladora.com/aviso-de-privacidad');
+                        },
+                    ),
+                    const TextSpan(
+                      text: 'para continuar.'
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
 
         ]
       ),

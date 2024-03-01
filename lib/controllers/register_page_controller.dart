@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 import '../models/zone.dart';
@@ -27,6 +28,8 @@ class RegisterPageController extends GetxController {
   int lastStep = 5;
 
   List optionalSteps = [];
+
+  bool buttonEnabled = false;
 
   //BIRTHDAY
   DateTime? selectedDate;
@@ -389,6 +392,14 @@ class RegisterPageController extends GetxController {
       );
     }
 
+    if(!buttonEnabled) {
+      error++;
+      Get.defaultDialog(
+        title: "Error" ,
+        content: const Text("Por favor acepta los Términos y Condiciones")
+      );
+    }
+
     User user = User(
       name: nameController.text,
       lastNameFather: lastNameFatherController.text,
@@ -447,6 +458,22 @@ class RegisterPageController extends GetxController {
     }
 
 
+  }
+
+  Future<void> launchURL(String url) async {
+
+    var uriUrl = Uri.parse(url);
+
+    if (!await launchUrl(uriUrl)) {
+      
+      throw 'No se pudo lanzar $url';
+    }
+  }
+
+  void changeButtonEnabled(value) {
+    buttonEnabled = value;
+    update();
+    print(buttonEnabled);
   }
 
 }
